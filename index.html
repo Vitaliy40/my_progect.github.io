@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фастфуд додаток</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('burger.jpg');
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff4500;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #e03d00;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+        }
+
+        .menu {
+            display: none;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu li {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Вітаю у додатку для покупки фастфуду!</h1>
+        <button id="buyButton">Купити</button>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <h2>Реєстрація</h2>
+            <form id="registrationForm">
+                <label for="name">Ім'я:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="phone">Номер телефону:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label for="email">Пошта:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <button type="submit">Зареєструватись</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container menu" id="menu">
+        <h1>Меню</h1>
+        <ul>
+            <li>Бургер</li>
+            <li>Картопля фрі</li>
+            <li>Хот-дог</li>
+            <li>Сендвіч</li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('buyButton').addEventListener('click', function() {
+            document.getElementById('registerModal').style.display = 'flex';
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            if (this.name.value && this.phone.value && this.email.value) {
+                document.getElementById('registerModal').style.display = 'none';
+                document.querySelector('.container').style.display = 'none';
+                document.getElementById('menu').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
